@@ -1,0 +1,28 @@
+<ng-container *ngIf="sSteal.currentRound$|async as round">
+  <div class="w-full flex flex-col justify-center items-center gap-2">
+    <div class="w-full flex flex-col gap-2 justify-center items-center">
+      <div class="text-2xl text-center">Presente Escolhido!!!</div>
+      <app-present-card [present]="round.present!" [revealed]="false" [flipped]="true" />
+    </div>
+    <button *ngIf="canPlay" class="btn btn-sm btn-primary" (click)="sSteal.keepPresent()">Ficar com este presente</button>
+    <ng-container *ngIf="sSteal.runnedRounds$ | async as runneds">
+      <ng-container *ngIf="runneds.length > 0">
+        <div>OU</div>
+        <div>
+          <div>Quero roubar outro presente:</div>
+          <div class="flex flex-col gap-2">
+
+            <div *ngFor="let runned of sSteal.runnedRounds$ | async" class="btn btn-primary" (click)="sSteal.stealpresent(runned)">
+              <div>{{runned.member.name}}</div>
+              <div>{{runned.present?.name}}</div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+    </ng-container>
+
+  </div>
+
+
+</ng-container>

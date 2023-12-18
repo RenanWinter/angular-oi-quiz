@@ -1,0 +1,55 @@
+<h1 class="text-center py-4 text-2xl">Resultado geral</h1>
+<div class="overflow-x-auto flex-grow">
+
+  <table class="table tabl-xs w-[600px] max-w-[96vw]">
+    <thead>
+      <tr>
+        <th>Participante</th>
+        <th>Pontos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of (sQuiz.scoreboard$ | async)">
+        <tr (click)="selected = selected === item ? undefined : item" class="cursor-pointer hover">
+          <td>
+            <ng-container *ngIf="item.totalInt > 0">
+              <container-element [ngSwitch]="item.position">
+                <span *ngSwitchCase="1">🥇 </span>
+                <span *ngSwitchCase="2">🥈 </span>
+                <span *ngSwitchCase="3">🥉 </span>
+                <span *ngSwitchDefault>{{item.position}} - </span>
+
+              </container-element>
+
+            </ng-container>
+
+            <span>{{item.member}}</span>
+          </td>
+          <td>{{item.totalInt | number: '1.0-0'}}</td>
+          </ tr>
+        <tr *ngIf="selected === item">
+          <td colspan="2" class="flex justify-center items-end">
+            <table class="table table-sm w-[150px]">
+              <thead>
+                <tr>
+                  <th>Rodada</th>
+                  <th>Pontos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let points of item.rounds; let i = index;">
+                  <td>{{i + 1}}</td>
+                  <td>{{points  | number: '1.0-0'}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<div id="tsparticles"></div>

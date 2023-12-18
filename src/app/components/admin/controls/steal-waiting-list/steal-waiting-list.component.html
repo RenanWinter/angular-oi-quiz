@@ -1,0 +1,38 @@
+<table class="table table-xs">
+  <thead>
+    <tr>
+      <td>Participante</td>
+      <td>Já Jogou?</td>
+      <td>Escolheu</td>
+      <td>Ficou com</td>
+      <td>Roubou?</td>
+      <td>Ações</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let round of (sSteal.rounds$ | async)">
+      <td>{{round.member.name}}</td>
+      <td>
+        <container-element [ngSwitch]="round.status">
+          <span *ngSwitchCase="'pending'">Não </span>
+          <span *ngSwitchCase="'choosing-card'">Escolhendo Presente </span>
+          <span *ngSwitchCase="'choosing-member'">Escolhendo Roubar</span>
+          <span *ngSwitchCase="'finished'">Apresentando Resultado</span>
+          <span *ngSwitchCase="'terminated'">Sim</span>
+        </container-element>
+      </td>
+      <td>{{round.picked?.name}}</td>
+      <td>{{round.present?.name}}</td>
+      <td *ngIf="round.status === 'terminated'">{{round.stolenBy ? round.stolenBy.name : 'Não'}}</td>
+      <td *ngIf="round.status !== 'terminated'"></td>
+
+      <td>
+        <button *ngIf="round.isNext" class="btn btn-sm btn-primary btn-circle tooltip tooltip-left tooltip-primary" data-tip="Escolher Presente" (click)="sSteal.chooseCard(round)">
+          <i class="fa fa-gift"></i>
+        </button>
+
+      </td>
+
+    </tr>
+  </tbody>
+</table>

@@ -23,3 +23,50 @@ html, body{
   padding: 0;
   overflow: hidden;
 }
+
+.page-title{
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.quiz-top {
+  background-image: url("/assets/natal-top.jpg");
+  background-repeat: repeat-x;
+  height: 60px;
+  width: 100%;
+  background-size: contain;
+  background-position-x: center;
+}
+
+.sad-santa{
+  background-image: url(/assets/sad.gif);
+  width: 150px;
+  position: absolute;
+  bottom: -30px;
+  right: 0;
+  height: 150px;
+  background-size: cover;
+}
+
+.dancing-santa{
+  background-image: url(/assets/dancing.gif);
+  width: 150px;
+  position: absolute;
+  bottom: -5px;
+  right: 0;
+  height: 150px;
+  background-size: cover;
+}
+
+.dancing2-santa{
+  background-image: url(/assets/dancing2.gif);
+  width: 150px;
+  position: absolute;
+  bottom: -4px;
+  right: 0;
+  height: 150px;
+  background-size: cover;
+}
+
+

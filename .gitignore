@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 /bazel-out
+/src/environment.stage.ts
+/src/environment.prod.ts
 
 # Node
 /node_modules
@@ -40,3 +42,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

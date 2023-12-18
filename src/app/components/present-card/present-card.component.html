@@ -1,0 +1,7 @@
+<div>
+  <button *ngIf="!flipped" class="btn btn-success">{{number}}</button>
+  <ng-container *ngIf="flipped">
+    <span *ngIf="revealed">{{present.name}}</span>
+    <img *ngIf="!revealed" [src]="'assets/presents/' + present.img" alt="presente" width="80px" class="unrevealed">
+  </ng-container>
+</div>

@@ -1,0 +1,11 @@
+<h1 class="text-center text-2xl">{{title}}</h1>
+<div class="w-full flex flex-wrap gap-4 justify-center items-center p-2">
+
+
+  <button
+  class="btn btn-secondary"
+    *ngFor="let present of (sSteal.availablepresents$ | async); let i = index"
+    (click)="sSteal.selectPresent(present)">
+    {{i + 1}}
+  </button>
+</div>

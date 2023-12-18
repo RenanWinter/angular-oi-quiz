@@ -1,1 +1,13 @@
-<p>admin works!</p>
+<div role="tablist" class="tabs tabs-bordered">
+  <a role="tab" class="tab" [class]="{'tab-active':activeRoute === 'members'}" routerLink="./members"
+    (click)="activeRoute='members'">Participantes</a>
+  <a role="tab" class="tab" [class]="{'tab-active':activeRoute === 'quiz'}" routerLink="./questions"
+    (click)="activeRoute='quiz'">Perguntas</a>
+  <a role="tab" class="tab" [class]="{'tab-active':activeRoute === 'presents'}" routerLink="./presents"
+    (click)="activeRoute='presents'">Presentes</a>
+  <a role="tab" class="tab" [class]="{'tab-active':activeRoute === 'controls'}" routerLink="./controls"
+    (click)="activeRoute='controls'">Operações</a>
+</div>
+<div class="flex-grow overflow-auto">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,24 @@
+<div class="h-full w-full flex flex-col justify-center items-center gap-2">
+
+    <div *ngIf="answer.answeredCorrectly" class="card bg-success text-success-content shadow-xl">
+      <div class="card-body text-center">
+        <div class="text-xl mb-8">🥇🥇🥇 Parabéns! 🥇🥇🥇</div>
+        <div class="text-xl mb-8">Você acertou a resposta!</div>
+        <div class="flex flex-col gap-2">
+          Pontos da rodada: {{answer.points}}
+        </div>
+
+      </div>
+    </div>
+    <div *ngIf="answer.answeredCorrectly" class="dancing2-santa"></div>
+
+
+    <div *ngIf="!answer.answeredCorrectly" class="card bg-error text-error-content shadow-xl">
+      <div class="card-body text-center">
+        <div class="text-xl mb-8">😭😭😭 Que pena! 😭😭😭</div>
+        <div class="text-xl mb-8">Esta não era a resposta correta!</div>
+      </div>
+    </div>
+
+    <div *ngIf="!answer.answeredCorrectly" class="sad-santa"></div>
+</div>

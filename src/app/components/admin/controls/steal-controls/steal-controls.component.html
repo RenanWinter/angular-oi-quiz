@@ -1,0 +1,15 @@
+<div *ngIf="(sSteal.stealGame$ | async)?.state !== 'running'" class="flex gap-3">
+  <ng-container *ngIf="sSteal.rounds$ | async as rounds">
+    <button *ngIf="rounds.length > 0" class="btn btn-sm btn-primary" (click)="sSteal.deleteRounds()">Excluir Rodadas</button>
+    <button *ngIf="!rounds || rounds.length === 0" class="btn btn-sm btn-primary" (click)="sSteal.configureGame()">Criar Rodadas</button>
+    <button *ngIf="!rounds || rounds.length === 0" class="btn btn-sm btn-error" (click)="sSteal.deleteGame()">Cancelar Jogo</button>
+
+
+  </ng-container>
+
+</div>
+<ng-container *ngIf="(sSteal.stealGame$ | async) as game">
+  <app-steal-waiting-list *ngIf="game?.state === 'waiting'"/>
+  <app-play *ngIf="game?.state === 'running'"/>
+</ng-container>
+

@@ -1,0 +1,10 @@
+<dialog id="my_modal_1" class="modal" #modalRef>
+  <div class="modal-box">
+    <h3 class="font-bold text-lg" [innerHTML]="modal?.title"></h3>
+    <div class="py-4" [innerHTML]="modal?.content"></div>
+    <div class="modal-action">
+      <button *ngFor="let action of modal?.actions" class="btn btn-{{action.color}}"
+        (click)="executeAction(action)">{{action.text}}</button>
+    </div>
+  </div>
+</dialog>

@@ -1,1 +1,10 @@
-<p>play works!</p>
+<div class="h-full w-full flex flex-col">
+  <div class="quiz-top">
+  </div>
+  <div class="flex-grow overflow-auto">
+    <app-quiz-play *ngIf="game === 'quiz'"/>
+    <app-steal-play *ngIf="game === 'steal'"/>
+
+  </div>
+
+</div>

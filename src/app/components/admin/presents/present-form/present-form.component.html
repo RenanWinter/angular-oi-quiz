@@ -1,0 +1,25 @@
+<div class="flex justify-center items-center h-full">
+  <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card-body flex flex-col gap-4">
+      <div class="text-2xl text-center text-primary">{{title}}</div>
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Nome</span>
+        </div>
+        <input type="text" placeholder="Nome do presente" class="input input-bordered w-full max-w-xs" [(ngModel)]="model.name" #ctrl="ngModel"/>
+      </label>
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Foto Nome</span>
+        </div>
+        <input type="text" placeholder="Nome da foto" class="input input-bordered w-full max-w-xs" [(ngModel)]="model.img" #ctrl="ngModel"/>
+      </label>
+      <div class="card-actions justify-end">
+        <button class="btn btn-sm btn-error" (click)="cancel()">Cancelar</button>
+        <button class="btn btn-sm btn-primary" (click)="save()">Salvar</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

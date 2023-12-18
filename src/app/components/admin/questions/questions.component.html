@@ -1,0 +1,46 @@
+<div class="flex flex-col items-center overflow-auto">
+  <div class="w-[1200px]">
+    <ng-container *ngIf="!item">
+      <div class="w-full flex justify-between">
+        <h1 class="page-title">Relação de Perguntas</h1>
+        <button class="btn btn-primary btn-circle" (click)="create()"><i class="fa fa-plus"></i></button>
+      </div>
+
+      <div class="flex justify-center mt-4">
+        <table class="table max-w-[800px]">
+          <thead>
+            <tr>
+              <th>Ordem</th>
+              <th>Pergunta</th>
+              <th>Resposta</th>
+              <th>Pontos</th>
+              <th>Opções</th>
+              <th width="80px">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of service.questions$|async; let first = first; let last = last">
+              <td>{{item.order}}</td>
+              <td>{{item.question}}</td>
+              <td>{{item.answer}}</td>
+              <td>{{item.points}}</td>
+              <td>{{item.options.length}}</td>
+              <td class="flex gap-2">
+                <button class="btn btn-sm btn-primary btn-circle" (click)="edit(item)"><i
+                    class="fa fa-edit"></i></button>
+                <button class="btn btn-sm btn-error btn-circle" (click)="remove(item)"><i
+                    class="fa fa-times"></i></button>
+                <button *ngIf="!first" class="btn btn-sm btn-accent btn-circle" (click)="service.moveUp(item)"><i
+                    class="fa fa-arrow-up"></i></button>
+                <button *ngIf="!last" class="btn btn-sm btn-warning btn-circle" (click)="service.moveDown(item)"><i
+                    class="fa fa-arrow-down"></i></button>
+              </td>
+            </tr>
+        </table>
+      </div>
+    </ng-container>
+
+    <app-question-form *ngIf="item !== undefined" [action]="action" [item]="item"
+      (onClose)="item = undefined"></app-question-form>
+  </div>
+</div>

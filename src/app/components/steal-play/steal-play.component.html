@@ -1,0 +1,11 @@
+<ng-container *ngIf="(sSteal.stealGame$ | async) as game">
+  <app-waiting-round *ngIf="game.state === 'waiting'" [state]="'waiting'"/>
+  <ng-container *ngIf="(sSteal.currentRound$ | async) as round">
+    <app-choose-card *ngIf="game?.state === 'running' && round.status === 'choosing-card'"/>
+    <app-choose-member *ngIf="game?.state === 'running' && round.status === 'choosing-member'"/>
+    <app-steal-finished-round *ngIf="game?.state === 'running' && round.status === 'finished'"/>
+  </ng-container>
+
+
+
+</ng-container>

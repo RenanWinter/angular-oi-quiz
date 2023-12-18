@@ -46,4 +46,7 @@ module.exports = {
       "sunset",
     ],
   },
+  safelist:[
+    'btn-primary'
+  ]
 };

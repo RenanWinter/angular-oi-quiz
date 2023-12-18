@@ -1,0 +1,53 @@
+<div class="w-full h-full flex flex-col p-4">
+  <div class="actions flex justify-between">
+    <button *ngIf="status === 'stopped'" class="btn btn-sm btn-primary" (click)="sQuiz.showScoreboard()">Apresentar Resultados</button>
+    <button *ngIf="status === 'waiting' && !nextRound" class="btn btn-sm btn-primary" (click)="terminateQuiz()">Iniciar Rouba presente</button>
+    <button *ngIf="status === 'scoreboard'" class="btn btn-primary" (click)="sQuiz.closeScoreboard()">Fechar Score</button>
+    <button *ngIf="status === 'configuring'" class="btn btn-sm btn-primary" (click)="sQuiz.start()">Criar Rodadas</button>
+    <button *ngIf="['waiting'].includes(status)" class="btn btn-sm btn-error" (click)="sQuiz.clearRoundCollection()">Reiniciar</button>
+
+  </div>
+
+
+  <div class="flex-grow overflow-auto mt-2">
+    <div *ngIf="status === 'waiting'">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Pergunta</th>
+            <th>Resposta</th>
+            <th>Pontos</th>
+            <th>Respostas</th>
+            <th>Situação</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of rounds">
+            <td>{{item.question}}</td>
+            <td>{{item.answer}}</td>
+            <td>{{item.points || ''}}</td>
+            <td>{{item.corrects}}/{{item.incorrects}}</td>
+            <td class="text-center"><i [class]="item.status"></i></td>
+            <td class="flex gap-2">
+              <ng-container *ngIf="item.actions.length >0">
+                <button *ngFor="let action of item.actions" (click)="action.handler()">
+                  {{action.text}}
+                </button>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <app-running-round *ngIf="status === 'running' && !!runningRound" [round]="runningRound!"></app-running-round>
+
+
+    <app-quiz-scoreboard *ngIf="status === 'scoreboard'" />
+
+  </div>
+
+</div>

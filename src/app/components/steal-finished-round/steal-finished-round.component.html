@@ -1,0 +1,28 @@
+<button *ngIf="(sMember.member$|async)?.isAdmin" class="btn btn-sm btn-primary mb-6"
+(click)="sSteal.terminateRound()">Finalizar Rodada</button>
+
+<ng-container *ngIf="sSteal.currentRound$ | async as round">
+  <div class="flex flex-col w-full text-center mt-4">
+    <div class="text-2xl mb-4">{{round.member.name.split(' ')[0]}}
+      <div class="text-xl" *ngIf="round.stolenBy"> roubou o presente de {{round.stolenBy.name.split(' ')[0]}}</div>
+      <div *ngIf="!round.stolenBy"> Ficou com o presente escolhido!</div>
+    </div>
+  </div>
+  <div *ngIf="waiting" class="flex flex-col justify-center items-center mt-6 text-center">
+    <img src="assets/waiting2.gif" height="180px" alt="dancer">
+  </div>
+
+  <div *ngIf="!waiting" class="flex flex-col justify-center items-center mt-6 text-center gap-2">
+
+    <ng-container *ngIf="round.stolenBy">
+      <div> parabéns {{round.stolenBy.name.split(' ')[0]}}! este é o seu novo presente!!!</div>
+      <div> {{round.picked?.name}}</div>
+    </ng-container>
+
+    <img [src]="'assets/presents/' + round.picked?.img" width="300px" alt="presente">
+
+
+  </div>
+
+
+</ng-container>

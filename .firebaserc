@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "oi-quiz-988a1": {
+      "hosting": {
+        "oi-quiz": [
+          "oi-quiz-988a1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "oi-quiz-988a1"
+  }
+}

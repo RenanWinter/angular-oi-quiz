@@ -4,6 +4,9 @@
   "newProjectRoot": "projects",
   "projects": {
     "oi-quiz": {
+      "i18n": {
+        "sourceLocale":"pt-BR"
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,6 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "localize": ["pt-BR"],
             "outputPath": "dist/oi-quiz",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -48,7 +52,34 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environment.ts",
+                  "with": "src/environment.prod.ts"
+                }
+              ]
+            },
+            "staging": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environment.ts",
+                  "with": "src/environment.stage.ts"
+                }
+              ]
             },
             "development": {
               "optimization": false,
@@ -63,6 +94,9 @@
           "configurations": {
             "production": {
               "buildTarget": "oi-quiz:build:production"
+            },
+            "staging": {
+              "buildTarget": "oi-quiz:build:staging"
             },
             "development": {
               "buildTarget": "oi-quiz:build:development"
@@ -94,6 +128,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "oi-quiz:build:production",
+              "serveTarget": "oi-quiz:serve:production"
+            },
+            "development": {
+              "buildTarget": "oi-quiz:build:development",
+              "serveTarget": "oi-quiz:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

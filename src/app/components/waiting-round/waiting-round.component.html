@@ -1,0 +1,10 @@
+<div class="dancer">
+  <img src="assets/dancing.gif" alt="dancer">
+</div>
+<div class="flex h-full w-full justify-center items-center">
+  <div class="text-2xl text-primary">
+    <span *ngIf="state === 'waiting'">Aguardando próxima rodada!</span>
+    <span *ngIf="state === 'configuring'">O Jogo ainda não começou!</span>
+  </div>
+
+</div>

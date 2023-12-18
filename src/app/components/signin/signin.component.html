@@ -1,6 +1,23 @@
-<div >
+<div *ngIf="(authService.loadingState$ | async)" class="h-full flex justify-center items-center">
+  <div class="card w-[500px] max-w-[90vw] bg-base-100 shadow-xl">
+    Carregando os motores..
+  </div>
+</div>
 
-  <app-logo />
+<div *ngIf="(authService.signedIn$ | async)" class="h-full flex justify-center items-center">
+  <div class="card w-[500px] max-w-[90vw] bg-base-100 shadow-xl">
+    <figure>
+      <app-logo width="300" />
+    </figure>
+    <div class="card-body flex flex-column items-center gap-4">
+      <h2 class="card-title">Bora pro Quiz?</h2>
 
+      <input type="text" placeholder="Código de participante" class="input input-bordered" name="codigo"
+        [(ngModel)]="codigo" #ctrl="ngModel">
 
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary" (click)="checkuser()">Partiu!</button>
+      </div>
+    </div>
+  </div>
 </div>
